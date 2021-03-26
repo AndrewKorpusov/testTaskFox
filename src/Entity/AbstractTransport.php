@@ -81,5 +81,6 @@ abstract class AbstractTransport implements TransportInterface
         return $this;
     }
 
+    abstract function validate();
 
 }

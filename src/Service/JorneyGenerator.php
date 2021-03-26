@@ -8,7 +8,7 @@ use App\Factory\TransportFactory;
 class JorneyGenerator
 {
     /**
-     * @param $transportCards AbstractTransport[]
+     * @param $transportCards
      */
     public function generateJorney($transportCards)
     {

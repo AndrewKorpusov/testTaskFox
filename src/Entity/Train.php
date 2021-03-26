@@ -13,6 +13,21 @@ class Train extends AbstractTransport
         return $this->isProvidedLuggageToNextLeg;
     }
 
+    public function validate()
+    {
+        if (!$this->getArrival()) {
+            return false;
+        }
+        if (!$this->getDeparture()) {
+            return false;
+        }
+        if (!$this->getTransportNumber()) {
+            return false;
+        }
+
+        return true;
+    }
+
     private function getSeatString()
     {
         return $this->hasSeat() ? sprintf('Sit in seat %s', $this->getSeat()) : 'No seat assignment';

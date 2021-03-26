@@ -28,6 +28,10 @@ class TransportFactory
             }
         }
 
+        if (!$transport->validate()) {
+            throw new BadRequestHttpException(sprintf('Missed required properties for this transport type "%s"', $className));
+        }
+
         return $transport;
     }
 }

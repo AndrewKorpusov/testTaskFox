@@ -60,6 +60,28 @@ class Flight extends AbstractTransport
         return $this->gate ? sprintf('Gate %s,', $this->gate) : '';
     }
 
+
+    public function validate()
+    {
+        if (!$this->getArrival()) {
+            return false;
+        }
+        if (!$this->getDeparture()) {
+            return false;
+        }
+        if (!$this->getTransportNumber()) {
+            return false;
+        }
+        if (!$this->getGate()) {
+            return false;
+        }
+        if (!$this->getBaggageTicket()) {
+            return false;
+        }
+
+        return true;
+    }
+
     private function getBaggageTicketString()
     {
         if (!$this->automaticallyProvideBaggage) {
