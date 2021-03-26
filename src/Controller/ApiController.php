@@ -39,6 +39,7 @@ class ApiController
         }
 
         $transports = $this->jorneyGenerator->generateJorney($data);
+
         $result = $this->tripListGenerator->getTripList($transports);
 
         return new JsonResponse($result);
