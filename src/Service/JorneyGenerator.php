@@ -18,9 +18,7 @@ class JorneyGenerator
             $transports[] = TransportFactory::createFromTransportCard($transportCard);
         }
 
-        $transports = $this->sortTransportsByArrivalAndDeparture($transports);
-
-        return [];
+        return $this->sortTransportsByArrivalAndDeparture($transports);
     }
 
     private function sortTransportsByArrivalAndDeparture($transports)
@@ -63,14 +61,5 @@ class JorneyGenerator
         }
 
         return $transports;
-    }
-
-    /**
-     * @param $transports TransportInterface[]
-     * @param int $iterator
-     */
-    private function hasStartAndEnd($transports)
-    {
-
     }
 }

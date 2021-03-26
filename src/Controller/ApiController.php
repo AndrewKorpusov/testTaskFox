@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Service\JorneyGenerator;
+use App\Service\TripListGenerator;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +16,13 @@ class ApiController
 {
     private $jorneyGenerator;
 
-    public function __construct(JorneyGenerator $jorneyGenerator)
+    private $tripListGenerator;
+
+    public function __construct(JorneyGenerator $jorneyGenerator, TripListGenerator $tripListGenerator)
     {
         $this->jorneyGenerator = $jorneyGenerator;
+
+        $this->tripListGenerator = $tripListGenerator;
     }
 
     /**
@@ -33,7 +38,8 @@ class ApiController
             throw new BadRequestHttpException('Data should be an array');
         }
 
-        $result = $this->jorneyGenerator->generateJorney($data);
+        $transports = $this->jorneyGenerator->generateJorney($data);
+        $result = $this->tripListGenerator->getTripList($transports);
 
         return new JsonResponse($result);
     }
