@@ -45,6 +45,14 @@ class Flight extends AbstractTransport
     }
 
     /**
+     * @return bool
+     */
+    public function isAutomaticallyProvideBaggage(): bool
+    {
+        return $this->automaticallyProvideBaggage;
+    }
+
+    /**
      * @param mixed $baggageTicket
      * @return self
      */
@@ -55,7 +63,20 @@ class Flight extends AbstractTransport
         return $this;
     }
 
+    private function getGateString()
+    {
+        return $this->gate ? sprintf('Gate %s,', $this->gate) : '';
+    }
 
+    private function getBaggageTicketString()
+    {
+        if (!$this->automaticallyProvideBaggage) {
+            return $this->baggageTicket ? sprintf('Baggage drop at ticket counter %s,', $this->baggageTicket) : '';
+        } elseif($this->isAutomaticallyProvideBaggage()) {
+            return sprintf('Baggage will we automatically transferred from your last leg.');
+        }
+        return '';
+    }
 
     private function getSeatString()
     {
@@ -64,8 +85,8 @@ class Flight extends AbstractTransport
 
     public function __toString()
     {
-        return sprintf("From %s, take flight %s to %s. Gate %s, %s", $this->getDeparture(), $this->getTransportNumber(), $this->getArrival(),
-            $this->getGate(), $this->getSeatString());
+        return sprintf("From %s, take flight %s to %s. %s %s. %s", $this->getDeparture(), $this->getTransportNumber(), $this->getArrival(),
+            $this->getGateString(), $this->getSeatString(), $this->getBaggageTicketString());
     }
 
 }

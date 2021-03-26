@@ -16,6 +16,8 @@ abstract class AbstractTransport implements TransportInterface
 
     protected $seat;
 
+    protected $automaticallyProvideBaggage;
+
     public function getTransportNumber()
     {
         return $this->transportNumber;
@@ -69,6 +71,26 @@ abstract class AbstractTransport implements TransportInterface
     public function setSeat($seat)
     {
         $this->seat = $seat;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutomaticallyProvideBaggage()
+    {
+        return $this->automaticallyProvideBaggage;
+    }
+
+    /**
+     * @param mixed $automaticallyProvideBaggage
+     */
+    public function setAutomaticallyProvideBaggage($automaticallyProvideBaggage): self
+    {
+        $this->automaticallyProvideBaggage = $automaticallyProvideBaggage;
+
+        return $this;
     }
 
 
