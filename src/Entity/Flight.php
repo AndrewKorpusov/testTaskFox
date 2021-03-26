@@ -45,14 +45,6 @@ class Flight extends AbstractTransport
     }
 
     /**
-     * @return bool
-     */
-    public function isAutomaticallyProvideBaggage(): bool
-    {
-        return $this->automaticallyProvideBaggage;
-    }
-
-    /**
      * @param mixed $baggageTicket
      * @return self
      */

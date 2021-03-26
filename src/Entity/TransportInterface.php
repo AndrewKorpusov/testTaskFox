@@ -7,10 +7,6 @@ interface TransportInterface
 
     public function setTransportNumber($transportNumber);
 
-    public function getAdditionalInfo();
-
-    public function setAdditionalInfo($additionalInfo);
-
     public function getDeparture();
 
     public function setDeparture($departure);
